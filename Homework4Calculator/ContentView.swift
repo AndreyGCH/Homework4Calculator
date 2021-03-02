@@ -31,6 +31,7 @@ enum CalculatorButton: String{
         case .percent: return "%"
         case .equal: return "="
         case .decimal: return "."
+        case .divide: return "/"
         default:
             return "AC"
         }
@@ -78,12 +79,28 @@ struct ContentView: View {
                             Button(action: {
                                 self.env.inputHandler(calculatorBtn: button)
                             }) {
-                                Text(button.title)
-                                .font(.system(size: 32))
-                                    .frame(width:self.getButtonWidth(button: button), height: (UIScreen.main.bounds.width - 5 * 12 ) / 4)
-                                    .foregroundColor(.white)
-                                    .background(button.backgroundColor)
-                                    .cornerRadius(self.getButtonWidth(button: button))
+                                
+                                if(button.title == "AC" ||
+                                    button.title == "+/-" ||
+                                    button.title == "%"
+                                ){
+                                    Text(button.title)
+                                    .font(.system(size: 32))
+                                        .frame(width:self.getButtonWidth(button: button), height: (UIScreen.main.bounds.width - 5 * 12 ) / 4)
+                                        .foregroundColor(.black)
+                                        .background(button.backgroundColor)
+                                        .cornerRadius(self.getButtonWidth(button: button))
+                                }else{
+                                    Text(button.title)
+                                    .font(.system(size: 32))
+                                        .frame(width:self.getButtonWidth(button: button), height: (UIScreen.main.bounds.width - 5 * 12 ) / 4)
+                                        .foregroundColor(.white)
+                                        .background(button.backgroundColor)
+                                        .cornerRadius(self.getButtonWidth(button: button))
+                                }
+                                
+                                
+                            
                             }
                         }
                     }
